@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    name: Build and deploy gh-pages
+    env:
+      MY_SECRET   : ${{ secrets.commit_secret }}
+      PUBLISH_DIR : .vuepress/dist
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Build vuepress
+        run: |
+          yarn install
+          yarn build
+          echo 'solidity.tw' > .vuepress/dist/CNAME
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .vuepress/dist
