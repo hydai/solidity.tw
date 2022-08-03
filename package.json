@@ -1,0 +1,16 @@
+{
+	"name": "solidity-book",
+	"version": "0.0.0",
+	"description": "a book about ethereum and solidity smart contract",
+	"main": "index.js",
+	"repository": "https://github.com/hydai/solidity-book",
+	"author": "hydai <z54981220@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"vuepress": "^1.9.7"
+	},
+	"scripts": {
+		"dev": "vuepress dev ./",
+		"build": "vuepress build ./"
+	}
+}
