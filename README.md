@@ -14,6 +14,10 @@
 
 最近幾個月剛好在教身邊的朋友如何寫合約，因此決定把過往的教材拿出來翻修，並搭配現在的 Ethereum The Merge 的時機點，來聊聊關於 Ethereum 1.0, 2.0 與 Solidity 智能合約開發的那些事。
 
+## 一些相關的連結
 
+* [2022 鐵人賽：在 2022 年，我們該如何寫智能合約](https://ithelp.ithome.com.tw/users/20083367/ironman/5019)
+* [2022 鐵人賽：那些關於 Ethereum 的事](https://ithelp.ithome.com.tw/users/20083367/ironman/5136)
+* [許願池](https://github.com/hydai/solidity-book/issues)
 
 [1]: https://youtube.com/playlist?list=PLHmOMPRfmOxSJcrlwyandWYiuP9ZAMYoF

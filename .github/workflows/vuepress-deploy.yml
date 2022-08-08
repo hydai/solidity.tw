@@ -30,7 +30,6 @@ jobs:
         run: |
           yarn install
           yarn build
-          echo 'solidity.tw' > .vuepress/dist/CNAME
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
