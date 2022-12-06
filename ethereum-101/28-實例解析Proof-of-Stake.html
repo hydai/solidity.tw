@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>實例解析 - Proof of Stake 書籍的捐款合約 Part 6 | 一本關於 Ethereum 與 Solidity 智能合約的書</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="在 2022 年，我們該如何學習智能合約開發">
+    
+    <link rel="preload" href="/assets/css/0.styles.d6ad21ed.css" as="style"><link rel="preload" href="/assets/js/app.a6c3df11.js" as="script"><link rel="preload" href="/assets/js/2.63c13255.js" as="script"><link rel="preload" href="/assets/js/35.e0f079ab.js" as="script"><link rel="prefetch" href="/assets/js/10.5a7a16a8.js"><link rel="prefetch" href="/assets/js/11.4c31ee08.js"><link rel="prefetch" href="/assets/js/12.1218a870.js"><link rel="prefetch" href="/assets/js/13.9468a495.js"><link rel="prefetch" href="/assets/js/14.ce44ba4e.js"><link rel="prefetch" href="/assets/js/15.44288807.js"><link rel="prefetch" href="/assets/js/16.b66472a3.js"><link rel="prefetch" href="/assets/js/17.59aaefa5.js"><link rel="prefetch" href="/assets/js/18.55a09b04.js"><link rel="prefetch" href="/assets/js/19.53b1e97e.js"><link rel="prefetch" href="/assets/js/20.617626b1.js"><link rel="prefetch" href="/assets/js/21.74ff2861.js"><link rel="prefetch" href="/assets/js/22.68839117.js"><link rel="prefetch" href="/assets/js/23.5a7f81b4.js"><link rel="prefetch" href="/assets/js/24.d8269f2a.js"><link rel="prefetch" href="/assets/js/25.7718cd3f.js"><link rel="prefetch" href="/assets/js/26.1b5a1731.js"><link rel="prefetch" href="/assets/js/27.1603ecec.js"><link rel="prefetch" href="/assets/js/28.77633db5.js"><link rel="prefetch" href="/assets/js/29.5da78d01.js"><link rel="prefetch" href="/assets/js/3.a4d9c696.js"><link rel="prefetch" href="/assets/js/30.5db32a07.js"><link rel="prefetch" href="/assets/js/31.8708c870.js"><link rel="prefetch" href="/assets/js/32.ab9db6ad.js"><link rel="prefetch" href="/assets/js/33.7920e112.js"><link rel="prefetch" href="/assets/js/34.2ce92df8.js"><link rel="prefetch" href="/assets/js/36.924f9038.js"><link rel="prefetch" href="/assets/js/37.d26cb8a8.js"><link rel="prefetch" href="/assets/js/38.81bd64e5.js"><link rel="prefetch" href="/assets/js/4.94733d25.js"><link rel="prefetch" href="/assets/js/5.2ea06e07.js"><link rel="prefetch" href="/assets/js/6.8d81f0ec.js"><link rel="prefetch" href="/assets/js/7.493fcb36.js"><link rel="prefetch" href="/assets/js/8.0e012ad4.js"><link rel="prefetch" href="/assets/js/9.0aa68fbd.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d6ad21ed.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一本關於 Ethereum 與 Solidity 智能合約的書</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link router-link-active">
+  那些關於 Ethereum 的事
+</a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link router-link-active">
+  那些關於 Ethereum 的事
+</a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Ethereum 101</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ethereum-101/" aria-current="page" class="sidebar-link">那些關於 Ethereum 的事</a></li><li><a href="/ethereum-101/01-什麼是區塊鏈.html" class="sidebar-link">什麼是區塊鏈？</a></li><li><a href="/ethereum-101/02-什麼是區塊什麼是鏈.html" class="sidebar-link">何謂區塊？何謂鏈？</a></li><li><a href="/ethereum-101/03-什麼是交易.html" class="sidebar-link">什麼是交易（Transaction）</a></li><li><a href="/ethereum-101/04-燃料與手續費.html" class="sidebar-link">燃料（Gas）與手續費（Fee）</a></li><li><a href="/ethereum-101/05-帳戶.html" class="sidebar-link">帳戶（Account）</a></li><li><a href="/ethereum-101/06-網路.html" class="sidebar-link">網路（Network）</a></li><li><a href="/ethereum-101/07-共識機制.html" class="sidebar-link">共識機制</a></li><li><a href="/ethereum-101/08-工作量證明.html" class="sidebar-link">工作量證明（Proof-of-Work）</a></li><li><a href="/ethereum-101/09-權益證明.html" class="sidebar-link">權益證明（Proof-of-Stake）</a></li><li><a href="/ethereum-101/10-以太坊生態系的不同層級.html" class="sidebar-link">以太坊生態系的不同層級</a></li><li><a href="/ethereum-101/11-以太坊改良提案.html" class="sidebar-link">以太坊改良提案 Ethereum Improvement Proposals (EIP)</a></li><li><a href="/ethereum-101/12-以太坊請求意見稿.html" class="sidebar-link">以太坊請求意見稿 Ethereum Request for Comments (ERC)</a></li><li><a href="/ethereum-101/13-ERC20代幣標準.html" class="sidebar-link">ERC20 代幣標準</a></li><li><a href="/ethereum-101/14-ERC20例子.html" class="sidebar-link">ERC20 例子</a></li><li><a href="/ethereum-101/15-ERC721非同值性代幣（NFT）標準.html" class="sidebar-link">ERC721 非同值性代幣（NFT）標準</a></li><li><a href="/ethereum-101/16-ERC721的元資料擴充（metadata）.html" class="sidebar-link">ERC721 的元資料擴充（metadata extension）</a></li><li><a href="/ethereum-101/17-ERC721的列舉擴充.html" class="sidebar-link">ERC721 的列舉擴充（enumeration extension）</a></li><li><a href="/ethereum-101/18-ERC721A的改進.html" class="sidebar-link">ERC721A 的改進</a></li><li><a href="/ethereum-101/19-ERC721R-有鑑賞期的NFT.html" class="sidebar-link">ERC721R - 有鑑賞期的 NFT</a></li><li><a href="/ethereum-101/20-ERC1155多元代幣標準.html" class="sidebar-link">ERC1155 多元代幣標準 - ERC20 + ERC721 我全都要</a></li><li><a href="/ethereum-101/21-ERC1155的案例.html" class="sidebar-link">ERC1155 的案例</a></li><li><a href="/ethereum-101/22-POAP參與證明.html" class="sidebar-link">POAP - Proof Of Attendance Protocol 參與證明</a></li><li><a href="/ethereum-101/23-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 1</a></li><li><a href="/ethereum-101/24-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 2</a></li><li><a href="/ethereum-101/25-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 3</a></li><li><a href="/ethereum-101/26-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 4</a></li><li><a href="/ethereum-101/27-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 5</a></li><li><a href="/ethereum-101/28-實例解析Proof-of-Stake.html" class="active sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 6</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ethereum-101/28-實例解析Proof-of-Stake.html#合約原始碼" class="sidebar-link">合約原始碼</a></li></ul></li><li><a href="/ethereum-101/29-實例解析Proof-of-Stake.html" class="sidebar-link">實例解析 - Proof of Stake 書籍的捐款合約 Part 7 (final)</a></li><li><a href="/ethereum-101/30-結語.html" class="sidebar-link">結語</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="實例解析-proof-of-stake-書籍的捐款合約-part-6"><a href="#實例解析-proof-of-stake-書籍的捐款合約-part-6" class="header-anchor">#</a> 實例解析 - Proof of Stake 書籍的捐款合約 Part 6</h1> <h2 id="合約原始碼"><a href="#合約原始碼" class="header-anchor">#</a> 合約原始碼</h2> <p><a href="https://etherscan.io/address/0x5bf5bcc5362f88721167c1068b58c60cad075aac#code" target="_blank" rel="noopener noreferrer">合約原始碼請點此<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="proofofstake-pages-sol-引用的函式庫與介面"><a href="#proofofstake-pages-sol-引用的函式庫與介面" class="header-anchor">#</a> <code>ProofOfStake_Pages.sol</code> 引用的函式庫與介面</h3> <p>ProofOfStake_Pages 合約中引入的函式庫與介面，可以看到以下的結構(<code>*</code> 為本日說明的範圍)</p> <div class="language-solidity extra-class"><pre class="language-solidity"><code>ProofOfStake_Pages
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">3</span><span class="token punctuation">)</span> Ownable<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">2</span><span class="token punctuation">)</span> Context<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">3</span><span class="token punctuation">)</span> ReentrancyGuard<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> ERC721Enumerable<span class="token punctuation">.</span>sol<span class="token operator">*</span>
+<span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> ERC721<span class="token punctuation">.</span>sol<span class="token operator">*</span>
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>前文<span class="token punctuation">)</span> IERC721<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>     <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">5</span><span class="token punctuation">)</span> IERC165<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">5</span><span class="token punctuation">)</span> IERC721Receiver<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>前文<span class="token punctuation">)</span> IERC721Metadata<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">4</span><span class="token punctuation">)</span> Address<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">2</span><span class="token punctuation">)</span> Context<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">2</span><span class="token punctuation">)</span> Strings<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">5</span><span class="token punctuation">)</span> ERC165<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>前文<span class="token punctuation">)</span> IERC721Enumerable<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>前文<span class="token punctuation">)</span> IERC721<span class="token punctuation">.</span>sol
+<span class="token operator">|</span>  <span class="token operator">|</span>     <span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">5</span><span class="token punctuation">)</span> IERC165<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">2</span><span class="token punctuation">)</span> Strings<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">2</span><span class="token punctuation">)</span> Counters<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">1</span><span class="token punctuation">)</span> base64<span class="token punctuation">.</span>sol
+<span class="token operator">|</span><span class="token operator">-</span> <span class="token punctuation">(</span>Part <span class="token number">1</span><span class="token punctuation">)</span>Transforms<span class="token punctuation">.</span>sol
+</code></pre></div><h3 id="erc721-sol"><a href="#erc721-sol" class="header-anchor">#</a> <code>ERC721.sol</code></h3> <p>基本上這邊的 ERC721 就是標準實作。
+請大家直接參考下面的程式碼，我把加上了中文註解方便理解內容。</p> <div class="language-solidity extra-class"><pre class="language-solidity"><code><span class="token comment">// SPDX-License-Identifier: MIT</span>
+
+<span class="token keyword">pragma</span> <span class="token keyword">solidity</span> <span class="token operator">^</span><span class="token version number">0.8.0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string">&quot;./IERC721.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;./IERC721Receiver.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;./extensions/IERC721Metadata.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;../../utils/Address.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;../../utils/Context.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;../../utils/Strings.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;../../utils/introspection/ERC165.sol&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including
+ * the Metadata extension, but not including the Enumerable extension, which is available separately as
+ * {ERC721Enumerable}.
+ */</span>
+<span class="token keyword">contract</span> <span class="token class-name">ERC721</span> <span class="token keyword">is</span> Context<span class="token punctuation">,</span> ERC165<span class="token punctuation">,</span> IERC721<span class="token punctuation">,</span> IERC721Metadata <span class="token punctuation">{</span>
+    <span class="token keyword">using</span> <span class="token class-name">Address</span> <span class="token keyword">for</span> <span class="token builtin">address</span><span class="token punctuation">;</span>
+    <span class="token keyword">using</span> <span class="token class-name">Strings</span> <span class="token keyword">for</span> <span class="token builtin">uint256</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 代幣名稱</span>
+    <span class="token comment">// Token name</span>
+    <span class="token builtin">string</span> <span class="token keyword">private</span> _name<span class="token punctuation">;</span>
+
+    <span class="token comment">// 代幣簡稱</span>
+    <span class="token comment">// Token symbol</span>
+    <span class="token builtin">string</span> <span class="token keyword">private</span> _symbol<span class="token punctuation">;</span>
+
+    <span class="token comment">// 用來儲存 token ID 對 擁有者位址的映射結構</span>
+    <span class="token comment">// Mapping from token ID to owner address</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> <span class="token operator">=&gt;</span> <span class="token builtin">address</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _owners<span class="token punctuation">;</span>
+
+    <span class="token comment">// 用來儲存 擁有者位址 對 token 持有數量的映射結構</span>
+    <span class="token comment">// Mapping owner address to token count</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token operator">=&gt;</span> <span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _balances<span class="token punctuation">;</span>
+
+    <span class="token comment">// 用來儲存 token ID 對 被授權者位址的映射結構</span>
+    <span class="token comment">// Mapping from token ID to approved address</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> <span class="token operator">=&gt;</span> <span class="token builtin">address</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _tokenApprovals<span class="token punctuation">;</span>
+
+    <span class="token comment">// 用來儲存 持有者 對 第三方授權 的映射結構</span>
+    <span class="token comment">// Mapping from owner to operator approvals</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token operator">=&gt;</span> <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token operator">=&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _operatorApprovals<span class="token punctuation">;</span>
+
+    <span class="token comment">// 建構子，初始化 ERC721 的名稱與簡稱</span>
+    <span class="token comment">/**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span> name_<span class="token punctuation">,</span> <span class="token builtin">string</span> <span class="token keyword">memory</span> symbol_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        _name <span class="token operator">=</span> name_<span class="token punctuation">;</span>
+        _symbol <span class="token operator">=</span> symbol_<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 告訴使用者，本合約支援： IERC721, IERC721Metadata 與 IERC165</span>
+    <span class="token comment">/**
+     * @dev See {IERC165-supportsInterface}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">supportsInterface</span><span class="token punctuation">(</span><span class="token builtin">bytes4</span> interfaceId<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual <span class="token function">override</span><span class="token punctuation">(</span>ERC165<span class="token punctuation">,</span> IERC165<span class="token punctuation">)</span> <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+            interfaceId <span class="token operator">==</span> <span class="token function">type</span><span class="token punctuation">(</span>IERC721<span class="token punctuation">)</span><span class="token punctuation">.</span>interfaceId <span class="token operator">||</span>
+            interfaceId <span class="token operator">==</span> <span class="token function">type</span><span class="token punctuation">(</span>IERC721Metadata<span class="token punctuation">)</span><span class="token punctuation">.</span>interfaceId <span class="token operator">||</span>
+            super<span class="token punctuation">.</span><span class="token function">supportsInterface</span><span class="token punctuation">(</span>interfaceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳持有者持有數量</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-balanceOf}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token builtin">address</span> owner<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// address 0 不能是持有者</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>owner <span class="token operator">!=</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: balance query for the zero address&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> _balances<span class="token punctuation">[</span>owner<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 回傳該 token ID 的持有者</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-ownerOf}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">ownerOf</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 取出持有者資訊</span>
+        <span class="token builtin">address</span> owner <span class="token operator">=</span> _owners<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 檢查持有者必不能是 address 0</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>owner <span class="token operator">!=</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: owner query for nonexistent token&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> owner<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳名稱</span>
+    <span class="token comment">/**
+     * @dev See {IERC721Metadata-name}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳簡稱</span>
+    <span class="token comment">/**
+     * @dev See {IERC721Metadata-symbol}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _symbol<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳該 token ID 的 URI 資訊</span>
+    <span class="token comment">/**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">tokenURI</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// URI 只對還存在的 token ID 有意義</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_exists</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721Metadata: URI query for nonexistent token&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 取得基礎 URI (ipfs:// or http://example...)</span>
+        <span class="token builtin">string</span> <span class="token keyword">memory</span> baseURI <span class="token operator">=</span> <span class="token function">_baseURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 組合成完整的 URI，通常是基礎 URI + tokenID 為該 token 的完整 URI 資訊</span>
+        <span class="token keyword">return</span> <span class="token builtin">bytes</span><span class="token punctuation">(</span>baseURI<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token builtin">string</span><span class="token punctuation">(</span>abi<span class="token punctuation">.</span><span class="token function">encodePacked</span><span class="token punctuation">(</span>baseURI<span class="token punctuation">,</span> tokenId<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳基礎 URI</span>
+    <span class="token comment">/**
+     * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
+     * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
+     * by default, can be overriden in child contracts.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_baseURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">internal</span> <span class="token keyword">view</span> virtual <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">string</span> <span class="token keyword">memory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 預設為無</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 授權函式</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-approve}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">approve</span><span class="token punctuation">(</span><span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">public</span> virtual override <span class="token punctuation">{</span>
+        <span class="token comment">// 取得持有者資訊</span>
+        <span class="token builtin">address</span> owner <span class="token operator">=</span> ERC721<span class="token punctuation">.</span><span class="token function">ownerOf</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 持有者不能授權給自己</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> owner<span class="token punctuation">,</span> <span class="token string">&quot;ERC721: approval to current owner&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 呼叫者必須是：</span>
+        <span class="token comment">// 1. 持有者本人</span>
+        <span class="token comment">// 2. 擁有持有者授權的第三方位址</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>
+            <span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> owner <span class="token operator">||</span> <span class="token function">isApprovedForAll</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> <span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;ERC721: approve caller is not owner nor approved for all&quot;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 呼叫內部函式進行授權</span>
+        <span class="token function">_approve</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳該 token ID 的被授權者</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-getApproved}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">getApproved</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 只有存在的 token ID 才能有被授權者</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_exists</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: approved query for nonexistent token&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> _tokenApprovals<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 授權/撤銷名下全部的 NFT 給第三方位址</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-setApprovalForAll}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">setApprovalForAll</span><span class="token punctuation">(</span><span class="token builtin">address</span> operator<span class="token punctuation">,</span> <span class="token builtin">bool</span> approved<span class="token punctuation">)</span> <span class="token keyword">public</span> virtual override <span class="token punctuation">{</span>
+        <span class="token comment">// 持有者不能授權給自己</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>operator <span class="token operator">!=</span> <span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: approve to caller&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 設定授權/撤銷</span>
+        _operatorApprovals<span class="token punctuation">[</span><span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>operator<span class="token punctuation">]</span> <span class="token operator">=</span> approved<span class="token punctuation">;</span>
+        <span class="token comment">// 觸發授權事件</span>
+        <span class="token keyword">emit</span> <span class="token function">ApprovalForAll</span><span class="token punctuation">(</span><span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> operator<span class="token punctuation">,</span> approved<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳持有者是否授權給特定第三方位址</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-isApprovedForAll}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">isApprovedForAll</span><span class="token punctuation">(</span><span class="token builtin">address</span> owner<span class="token punctuation">,</span> <span class="token builtin">address</span> operator<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _operatorApprovals<span class="token punctuation">[</span>owner<span class="token punctuation">]</span><span class="token punctuation">[</span>operator<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 轉移函式</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-transferFrom}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">transferFrom</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId
+    <span class="token punctuation">)</span> <span class="token keyword">public</span> virtual override <span class="token punctuation">{</span>
+        <span class="token comment">// 檢查呼叫者是否有權轉移此代幣</span>
+        <span class="token comment">//solhint-disable-next-line max-line-length</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_isApprovedOrOwner</span><span class="token punctuation">(</span><span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: transfer caller is not owner nor approved&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 呼叫內部轉移函式</span>
+        <span class="token function">_transfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 安全轉移函式</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-safeTransferFrom}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">safeTransferFrom</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId
+    <span class="token punctuation">)</span> <span class="token keyword">public</span> virtual override <span class="token punctuation">{</span>
+        <span class="token comment">// 直接呼叫帶有 data 欄位的版本</span>
+        <span class="token function">safeTransferFrom</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 安全轉移函式</span>
+    <span class="token comment">/**
+     * @dev See {IERC721-safeTransferFrom}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">safeTransferFrom</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId<span class="token punctuation">,</span>
+        <span class="token builtin">bytes</span> <span class="token keyword">memory</span> _data
+    <span class="token punctuation">)</span> <span class="token keyword">public</span> virtual override <span class="token punctuation">{</span>
+        <span class="token comment">// 檢查呼叫者是否有權進行轉移</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_isApprovedOrOwner</span><span class="token punctuation">(</span><span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: transfer caller is not owner nor approved&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 呼叫內部安全轉移函式</span>
+        <span class="token function">_safeTransfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> _data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部的安全轉移函式</span>
+    <span class="token comment">/**
+     * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients
+     * are aware of the ERC721 protocol to prevent tokens from being forever locked.
+     *
+     * `_data` is additional data, it has no specified format and it is sent in call to `to`.
+     *
+     * This internal function is equivalent to {safeTransferFrom}, and can be used to e.g.
+     * implement alternative mechanisms to perform token transfer, such as signature-based.
+     *
+     * Requirements:
+     *
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must exist and be owned by `from`.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_safeTransfer</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId<span class="token punctuation">,</span>
+        <span class="token builtin">bytes</span> <span class="token keyword">memory</span> _data
+    <span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 呼叫內部轉移函式</span>
+        <span class="token function">_transfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 檢查接收者是否為合約，以及是否正確實作 IERC721Receiver</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_checkOnERC721Received</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> _data<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: transfer to non ERC721Receiver implementer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，檢查 token ID 是否存在</span>
+    <span class="token comment">/**
+     * @dev Returns whether `tokenId` exists.
+     *
+     * Tokens can be managed by their owner or approved accounts via {approve} or {setApprovalForAll}.
+     *
+     * Tokens start existing when they are minted (`_mint`),
+     * and stop existing when they are burned (`_burn`).
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_exists</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> <span class="token keyword">view</span> virtual <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 只有當持有者非 address 0 時才算存在。若持有者為 address 0 ，則不是已經被銷毀，就是還沒被鑄造</span>
+        <span class="token keyword">return</span> _owners<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，回傳被查詢者是否擁有對 token ID 代幣的管理權：</span>
+    <span class="token comment">// 1. 被查詢者為持有者本人 =&gt; true</span>
+    <span class="token comment">// 2. 被查詢者擁有持有者的授權</span>
+    <span class="token comment">/**
+     * @dev Returns whether `spender` is allowed to manage `tokenId`.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_isApprovedOrOwner</span><span class="token punctuation">(</span><span class="token builtin">address</span> spender<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> <span class="token keyword">view</span> virtual <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 只有存在的 token ID 才有檢查的必要</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token function">_exists</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: operator query for nonexistent token&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取出持有者資訊</span>
+        <span class="token builtin">address</span> owner <span class="token operator">=</span> ERC721<span class="token punctuation">.</span><span class="token function">ownerOf</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 當以下其中一個條件滿足時，則代表擁有管理權：</span>
+        <span class="token comment">// 1. 持有者本人</span>
+        <span class="token comment">// 2. 擁有對該 token ID 的管理權</span>
+        <span class="token comment">// 3. 擁有對該持有者名下全部 token 的管理權</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>spender <span class="token operator">==</span> owner <span class="token operator">||</span> <span class="token function">getApproved</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span> <span class="token operator">==</span> spender <span class="token operator">||</span> <span class="token function">isApprovedForAll</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> spender<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，安全地鑄造代幣</span>
+    <span class="token comment">/**
+     * @dev Safely mints `tokenId` and transfers it to `to`.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must not exist.
+     * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
+     *
+     * Emits a {Transfer} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_safeMint</span><span class="token punctuation">(</span><span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 呼叫帶有 data 欄位的版本</span>
+        <span class="token function">_safeMint</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，安全鑄造函式</span>
+    <span class="token comment">/**
+     * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
+     * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_safeMint</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId<span class="token punctuation">,</span>
+        <span class="token builtin">bytes</span> <span class="token keyword">memory</span> _data
+    <span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 呼叫內部鑄造函式</span>
+        <span class="token function">_mint</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 檢查接收方若為合約，則必須實作 IERC721Received 介面</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>
+            <span class="token function">_checkOnERC721Received</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> _data<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;ERC721: transfer to non ERC721Receiver implementer&quot;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，鑄造代幣</span>
+    <span class="token comment">// 鑄造其實就是無中生有，將一個代幣從 address 0 轉移出來</span>
+    <span class="token comment">/**
+     * @dev Mints `tokenId` and transfers it to `to`.
+     *
+     * WARNING: Usage of this method is discouraged, use {_safeMint} whenever possible
+     *
+     * Requirements:
+     *
+     * - `tokenId` must not exist.
+     * - `to` cannot be the zero address.
+     *
+     * Emits a {Transfer} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_mint</span><span class="token punctuation">(</span><span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 接收者不能為 address 0 (等同銷毀)</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: mint to the zero address&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 被鑄造的代幣不能重複</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">_exists</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: token already minted&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 呼叫轉移前的 hook</span>
+        <span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 增加接收者的持有數量</span>
+        _balances<span class="token punctuation">[</span>to<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 設定該 token 的持有者</span>
+        _owners<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">=</span> to<span class="token punctuation">;</span>
+
+        <span class="token comment">// 觸發轉移事件</span>
+        <span class="token keyword">emit</span> <span class="token function">Transfer</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，銷毀代幣</span>
+    <span class="token comment">/**
+     * @dev Destroys `tokenId`.
+     * The approval is cleared when the token is burned.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     *
+     * Emits a {Transfer} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_burn</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 取得持有者資訊</span>
+        <span class="token builtin">address</span> owner <span class="token operator">=</span> ERC721<span class="token punctuation">.</span><span class="token function">ownerOf</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 執行轉移前的 hook</span>
+        <span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 清空授權</span>
+        <span class="token comment">// Clear approvals</span>
+        <span class="token function">_approve</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 減少持有者的持有數量</span>
+        _balances<span class="token punctuation">[</span>owner<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 清空該代幣的持有者資訊</span>
+        <span class="token keyword">delete</span> _owners<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 觸發轉移事件</span>
+        <span class="token keyword">emit</span> <span class="token function">Transfer</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，用來進行轉移</span>
+    <span class="token comment">/**
+     * @dev Transfers `tokenId` from `from` to `to`.
+     *  As opposed to {transferFrom}, this imposes no restrictions on msg.sender.
+     *
+     * Requirements:
+     *
+     * - `to` cannot be the zero address.
+     * - `tokenId` token must be owned by `from`.
+     *
+     * Emits a {Transfer} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_transfer</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId
+    <span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 檢查 from 為 tokenId 的持有者</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>ERC721<span class="token punctuation">.</span><span class="token function">ownerOf</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">from</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: transfer of token that is not own&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 檢查 to 不可為 address 0</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>to <span class="token operator">!=</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721: transfer to the zero address&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 執行轉移前的 hook</span>
+        <span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 將 tokenId 的授權者設定為 address 0 (清空授權)</span>
+        <span class="token comment">// Clear approvals from the previous owner</span>
+        <span class="token function">_approve</span><span class="token punctuation">(</span><span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 減少原持有者的持有數量</span>
+        _balances<span class="token punctuation">[</span><span class="token keyword">from</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 增加接收者的持有數量</span>
+        _balances<span class="token punctuation">[</span>to<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 將接收者設定為新的持有者</span>
+        _owners<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">=</span> to<span class="token punctuation">;</span>
+
+        <span class="token comment">// 觸發轉移事件</span>
+        <span class="token keyword">emit</span> <span class="token function">Transfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，用來進行授權</span>
+    <span class="token comment">/**
+     * @dev Approve `to` to operate on `tokenId`
+     *
+     * Emits a {Approval} event.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_approve</span><span class="token punctuation">(</span><span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span>
+        <span class="token comment">// 將 tokenId 授權給 to</span>
+        _tokenApprovals<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">=</span> to<span class="token punctuation">;</span>
+        <span class="token comment">// 觸發授權事件</span>
+        <span class="token keyword">emit</span> <span class="token function">Approval</span><span class="token punctuation">(</span>ERC721<span class="token punctuation">.</span><span class="token function">ownerOf</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，專門用來檢查接收方是否為合約，若是，則需要正確實作 IERC721Receiver.onERC721Received，否則就觸發錯誤或回傳 false</span>
+    <span class="token comment">/**
+     * @dev Internal function to invoke {IERC721Receiver-onERC721Received} on a target address.
+     * The call is not executed if the target address is not a contract.
+     *
+     * @param from address representing the previous owner of the given token ID
+     * @param to target address that will receive the tokens
+     * @param tokenId uint256 ID of the token to be transferred
+     * @param _data bytes optional data to send along with the call
+     * @return bool whether the call correctly returned the expected magic value
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_checkOnERC721Received</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId<span class="token punctuation">,</span>
+        <span class="token builtin">bytes</span> <span class="token keyword">memory</span> _data
+    <span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 檢查接收者是否為合約</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span><span class="token function">isContract</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 嘗試呼叫 IERC721Receiver 的介面，以檢查實作是否正確</span>
+            try <span class="token function">IERC721Receiver</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">onERC721Received</span><span class="token punctuation">(</span><span class="token function">_msgSender</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">,</span> _data<span class="token punctuation">)</span> <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bytes4</span> retval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> retval <span class="token operator">==</span> IERC721Receiver<span class="token punctuation">.</span>onERC721Received<span class="token punctuation">.</span>selector<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> catch <span class="token punctuation">(</span><span class="token builtin">bytes</span> <span class="token keyword">memory</span> reason<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 若發生錯誤，則顯示出錯誤的理由</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>reason<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">revert</span><span class="token punctuation">(</span><span class="token string">&quot;ERC721: transfer to non ERC721Receiver implementer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">assembly</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">revert</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> reason<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">mload</span><span class="token punctuation">(</span>reason<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 在轉移任何代幣之前的 hook，也就是會先執行它，再進行代幣轉移。</span>
+    <span class="token comment">/**
+     * @dev Hook that is called before any token transfer. This includes minting
+     * and burning.
+     *
+     * Calling conditions:
+     *
+     * - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be
+     * transferred to `to`.
+     * - When `from` is zero, `tokenId` will be minted for `to`.
+     * - When `to` is zero, ``from``'s `tokenId` will be burned.
+     * - `from` and `to` are never both zero.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId
+    <span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="erc721enumerable-sol"><a href="#erc721enumerable-sol" class="header-anchor">#</a> <code>ERC721Enumerable.sol</code></h3> <p>這個是對 ERC721 的擴充介面。</p> <div class="language-solidity extra-class"><pre class="language-solidity"><code><span class="token comment">// SPDX-License-Identifier: MIT</span>
+
+<span class="token keyword">pragma</span> <span class="token keyword">solidity</span> <span class="token operator">^</span><span class="token version number">0.8.0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string">&quot;../ERC721.sol&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">&quot;./IERC721Enumerable.sol&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @dev This implements an optional extension of {ERC721} defined in the EIP that adds
+ * enumerability of all the token ids in the contract as well as all token ids owned by each
+ * account.
+ */</span>
+abstract <span class="token keyword">contract</span> <span class="token class-name">ERC721Enumerable</span> <span class="token keyword">is</span> ERC721<span class="token punctuation">,</span> IERC721Enumerable <span class="token punctuation">{</span>
+    <span class="token comment">// 儲存持有者 對 其名下代幣列表 的映射結構</span>
+    <span class="token comment">// Mapping from owner to list of owned token IDs</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token operator">=&gt;</span> <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> <span class="token operator">=&gt;</span> <span class="token builtin">uint256</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _ownedTokens<span class="token punctuation">;</span>
+
+    <span class="token comment">// 儲存 token ID 對 其在持有者名下序號 的映射結構</span>
+    <span class="token comment">// Mapping from token ID to index of the owner tokens list</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> <span class="token operator">=&gt;</span> <span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _ownedTokensIndex<span class="token punctuation">;</span>
+
+    <span class="token comment">// 儲存所有 token id 的陣列，用來列舉全部代幣所用</span>
+    <span class="token comment">// Array with all token ids, used for enumeration</span>
+    <span class="token builtin">uint256</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">private</span> _allTokens<span class="token punctuation">;</span>
+
+    <span class="token comment">// 儲存 token id 到 其在 `_allTokens` 陣列中的位置</span>
+    <span class="token comment">// Mapping from token id to position in the allTokens array</span>
+    <span class="token keyword">mapping</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> <span class="token operator">=&gt;</span> <span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token keyword">private</span> _allTokensIndex<span class="token punctuation">;</span>
+
+    <span class="token comment">// 檢查支援的介面</span>
+    <span class="token comment">/**
+     * @dev See {IERC165-supportsInterface}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">supportsInterface</span><span class="token punctuation">(</span><span class="token builtin">bytes4</span> interfaceId<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual <span class="token function">override</span><span class="token punctuation">(</span>IERC165<span class="token punctuation">,</span> ERC721<span class="token punctuation">)</span> <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 支援 IERC721Enumerable 或被此合約繼承的介面</span>
+        <span class="token keyword">return</span> interfaceId <span class="token operator">==</span> <span class="token function">type</span><span class="token punctuation">(</span>IERC721Enumerable<span class="token punctuation">)</span><span class="token punctuation">.</span>interfaceId <span class="token operator">||</span> super<span class="token punctuation">.</span><span class="token function">supportsInterface</span><span class="token punctuation">(</span>interfaceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 利用持有者資訊與該代幣在持有者列表中的序號，來反查代幣編號</span>
+    <span class="token comment">/**
+     * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">tokenOfOwnerByIndex</span><span class="token punctuation">(</span><span class="token builtin">address</span> owner<span class="token punctuation">,</span> <span class="token builtin">uint256</span> index<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 序號必定小於持有者的持有總數</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>index <span class="token operator">&lt;</span> ERC721<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span>owner<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721Enumerable: owner index out of bounds&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> _ownedTokens<span class="token punctuation">[</span>owner<span class="token punctuation">]</span><span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳目前鑄造出的代幣總量</span>
+    <span class="token comment">/**
+     * @dev See {IERC721Enumerable-totalSupply}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">totalSupply</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _allTokens<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 回傳在所有代幣中，序號為 index 的代幣編號 </span>
+    <span class="token comment">/**
+     * @dev See {IERC721Enumerable-tokenByIndex}.
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">tokenByIndex</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> index<span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token keyword">view</span> virtual override <span class="token keyword">returns</span> <span class="token punctuation">(</span><span class="token builtin">uint256</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 查詢的序號必須低於鑄造出的代幣總量</span>
+        <span class="token keyword">require</span><span class="token punctuation">(</span>index <span class="token operator">&lt;</span> ERC721Enumerable<span class="token punctuation">.</span><span class="token function">totalSupply</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;ERC721Enumerable: global index out of bounds&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> _allTokens<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 在轉移前的 hook</span>
+    <span class="token comment">/**
+     * @dev Hook that is called before any token transfer. This includes minting
+     * and burning.
+     *
+     * Calling conditions:
+     *
+     * - When `from` and `to` are both non-zero, ``from``'s `tokenId` will be
+     * transferred to `to`.
+     * - When `from` is zero, `tokenId` will be minted for `to`.
+     * - When `to` is zero, ``from``'s `tokenId` will be burned.
+     * - `from` cannot be the zero address.
+     * - `to` cannot be the zero address.
+     *
+     * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span>
+        <span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span>
+        <span class="token builtin">address</span> to<span class="token punctuation">,</span>
+        <span class="token builtin">uint256</span> tokenId
+    <span class="token punctuation">)</span> <span class="token keyword">internal</span> virtual override <span class="token punctuation">{</span>
+        super<span class="token punctuation">.</span><span class="token function">_beforeTokenTransfer</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">==</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">/* 若為鑄造所觸發的轉移 */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 將新代幣加入總代幣列表</span>
+            <span class="token function">_addTokenToAllTokensEnumeration</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">!=</span> to <span class="token comment">/* 原持有者轉移代幣 */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 將代幣從原持有者列表中移除</span>
+            <span class="token function">_removeTokenFromOwnerEnumeration</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>to <span class="token operator">==</span> <span class="token builtin">address</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">/* 若為銷毀所觸發的轉移 */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token comment">// 將代幣從總代幣列表中移除</span>
+            <span class="token function">_removeTokenFromAllTokensEnumeration</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>to <span class="token operator">!=</span> <span class="token keyword">from</span> <span class="token comment">/* 新持有者接收代幣 */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 將代幣加入新持有者列表中</span>
+            <span class="token function">_addTokenToOwnerEnumeration</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，用來將代幣加入新持有者列表中</span>
+    <span class="token comment">/**
+     * @dev Private function to add a token to this extension's ownership-tracking data structures.
+     * @param to address representing the new owner of the given token ID
+     * @param tokenId uint256 ID of the token to be added to the tokens list of the given address
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_addTokenToOwnerEnumeration</span><span class="token punctuation">(</span><span class="token builtin">address</span> to<span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 取得新持有者的持有總數</span>
+        <span class="token builtin">uint256</span> length <span class="token operator">=</span> ERC721<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 將新代幣加入持有列表的尾端</span>
+        _ownedTokens<span class="token punctuation">[</span>to<span class="token punctuation">]</span><span class="token punctuation">[</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> tokenId<span class="token punctuation">;</span>
+        <span class="token comment">// 將新代幣的序號設定為持有列表的當前長度</span>
+        _ownedTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">=</span> length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，用來將新代幣加入總代幣列表中</span>
+    <span class="token comment">/**
+     * @dev Private function to add a token to this extension's token tracking data structures.
+     * @param tokenId uint256 ID of the token to be added to the tokens list
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_addTokenToAllTokensEnumeration</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 更新序號</span>
+        _allTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span> <span class="token operator">=</span> _allTokens<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token comment">// 加入總代幣列表</span>
+        _allTokens<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>tokenId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，從原持有者列表中移除代幣</span>
+    <span class="token comment">/**
+     * @dev Private function to remove a token from this extension's ownership-tracking data structures. Note that
+     * while the token is not assigned a new owner, the `_ownedTokensIndex` mapping is _not_ updated: this allows for
+     * gas optimizations e.g. when performing a transfer operation (avoiding double writes).
+     * This has O(1) time complexity, but alters the order of the _ownedTokens array.
+     * @param from address representing the previous owner of the given token ID
+     * @param tokenId uint256 ID of the token to be removed from the tokens list of the given address
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_removeTokenFromOwnerEnumeration</span><span class="token punctuation">(</span><span class="token builtin">address</span> <span class="token keyword">from</span><span class="token punctuation">,</span> <span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 為了避免在持有者列表中產生空位，總會利用交換的方式，把想移除的代幣換到最後一個代幣的欄位，再行移除</span>
+        <span class="token comment">// To prevent a gap in from's tokens array, we store the last token in the index of the token to delete, and</span>
+        <span class="token comment">// then delete the last slot (swap and pop).</span>
+
+        <span class="token comment">// 取得最後代幣的序號</span>
+        <span class="token builtin">uint256</span> lastTokenIndex <span class="token operator">=</span> ERC721<span class="token punctuation">.</span><span class="token function">balanceOf</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 取得目標代幣的序號</span>
+        <span class="token builtin">uint256</span> tokenIndex <span class="token operator">=</span> _ownedTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 只有最後代幣與目標代幣的序號不同時，需要進行交換</span>
+        <span class="token comment">// When the token to delete is the last token, the swap operation is unnecessary</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>tokenIndex <span class="token operator">!=</span> lastTokenIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token builtin">uint256</span> lastTokenId <span class="token operator">=</span> _ownedTokens<span class="token punctuation">[</span><span class="token keyword">from</span><span class="token punctuation">]</span><span class="token punctuation">[</span>lastTokenIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+            _ownedTokens<span class="token punctuation">[</span><span class="token keyword">from</span><span class="token punctuation">]</span><span class="token punctuation">[</span>tokenIndex<span class="token punctuation">]</span> <span class="token operator">=</span> lastTokenId<span class="token punctuation">;</span> <span class="token comment">// Move the last token to the slot of the to-delete token</span>
+            _ownedTokensIndex<span class="token punctuation">[</span>lastTokenId<span class="token punctuation">]</span> <span class="token operator">=</span> tokenIndex<span class="token punctuation">;</span> <span class="token comment">// Update the moved token's index</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 刪除最後代幣的持有者資訊</span>
+        <span class="token comment">// This also deletes the contents at the last position of the array</span>
+        <span class="token keyword">delete</span> _ownedTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> _ownedTokens<span class="token punctuation">[</span><span class="token keyword">from</span><span class="token punctuation">]</span><span class="token punctuation">[</span>lastTokenIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 內部函式，將代幣從總代幣列表中移除</span>
+    <span class="token comment">/**
+     * @dev Private function to remove a token from this extension's token tracking data structures.
+     * This has O(1) time complexity, but alters the order of the _allTokens array.
+     * @param tokenId uint256 ID of the token to be removed from the tokens list
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">_removeTokenFromAllTokensEnumeration</span><span class="token punctuation">(</span><span class="token builtin">uint256</span> tokenId<span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 為了避免總代幣列表中產生空位，因此會採用交換目標代幣列表的最尾端，再行刪除。</span>
+        <span class="token comment">// To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and</span>
+        <span class="token comment">// then delete the last slot (swap and pop).</span>
+
+        <span class="token builtin">uint256</span> lastTokenIndex <span class="token operator">=</span> _allTokens<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token builtin">uint256</span> tokenIndex <span class="token operator">=</span> _allTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so</span>
+        <span class="token comment">// rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding</span>
+        <span class="token comment">// an 'if' statement (like in _removeTokenFromOwnerEnumeration)</span>
+        <span class="token builtin">uint256</span> lastTokenId <span class="token operator">=</span> _allTokens<span class="token punctuation">[</span>lastTokenIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        _allTokens<span class="token punctuation">[</span>tokenIndex<span class="token punctuation">]</span> <span class="token operator">=</span> lastTokenId<span class="token punctuation">;</span> <span class="token comment">// Move the last token to the slot of the to-delete token</span>
+        _allTokensIndex<span class="token punctuation">[</span>lastTokenId<span class="token punctuation">]</span> <span class="token operator">=</span> tokenIndex<span class="token punctuation">;</span> <span class="token comment">// Update the moved token's index</span>
+
+        <span class="token comment">// This also deletes the contents at the last position of the array</span>
+        <span class="token keyword">delete</span> _allTokensIndex<span class="token punctuation">[</span>tokenId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        _allTokens<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/hydai/solidity.tw/edit/master/ethereum-101/28-實例解析Proof-of-Stake.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ethereum-101/27-實例解析Proof-of-Stake.html" class="prev">
+        實例解析 - Proof of Stake 書籍的捐款合約 Part 5
+      </a></span> <span class="next"><a href="/ethereum-101/29-實例解析Proof-of-Stake.html">
+        實例解析 - Proof of Stake 書籍的捐款合約 Part 7 (final)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a6c3df11.js" defer></script><script src="/assets/js/2.63c13255.js" defer></script><script src="/assets/js/35.e0f079ab.js" defer></script>
+  </body>
+</html>
