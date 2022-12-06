@@ -15,6 +15,8 @@ module.exports = {
 		]
 	},
 	plugins: [
-		["vuepress-plugin-auto-sidebar", {}]
+		["vuepress-plugin-auto-sidebar", {}],
+		['@vuepress/last-updated'],
+		['@vuepress/back-to-top'],
 	]
 }
