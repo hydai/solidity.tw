@@ -1,9 +1,9 @@
 {
-	"name": "solidity-book",
+	"name": "solidity.tw",
 	"version": "0.0.0",
 	"description": "a book about ethereum and solidity smart contract",
 	"main": "index.js",
-	"repository": "https://github.com/hydai/solidity-book",
+	"repository": "https://github.com/hydai/solidity.tw",
 	"author": "hydai <hydai@hyd.ai>",
 	"license": "MIT",
 	"devDependencies": {
