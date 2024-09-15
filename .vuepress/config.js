@@ -12,7 +12,8 @@ module.exports = {
 		nav: [
 			{ text: '首頁', link: '/' },
 			{ text: '那些關於 Ethereum 的事', link: '/ethereum-101/' },
-			{ text: '在 2022 年，我們該如何寫智能合約', link: 'https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM' }
+			{ text: '在 2022 年，我們該如何寫智能合約', link: 'https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM' },
+			{ text: '淺入淺出 EVM Object Format', link: 'https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN' }
 		]
 	},
 	plugins: [
