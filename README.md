@@ -9,6 +9,7 @@
 3. 在智能合約背後，你不知道的事：為一系列相對進階的智能合約開發技巧的文章與教學影片（目前還在規劃中，預計 2023 年六月底前發布）。
 4. 那些觀眾想知道的事：為觀眾透過 GitHub Issue 向海帶我提問的主題或者問題，將會以文章的方式來呈現（目前還在寫作中，等 3 完成以後才會繼續進行）
 5. [淺入淺出 EVM Object Format](https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN)：為一系列以 EVM Object Format 為主題的影片教學課程。包含但不限於 EIP-7692 所包含的 EIPs 與 EOFv1 的優點和改進的好處。
+6. [深入淺出 EVM Object Format](/head-first-eof)：為一系列以 EVM Object Format 為主題的教學課程，包含影片與文章，為「淺入淺出 EOF」的重製版本。將以完全初學者的角度入手，從各種背景知識開始介紹，由淺入深的讓讀者對 EOF 能有更完整的印象。
 
 如果你有想看的主題，或者認為哪些主題應該被涵蓋在本書中，請使用 Issue 來進行發問。
 
