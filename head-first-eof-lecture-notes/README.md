@@ -1,0 +1,36 @@
+# 深入淺出 EOFv1 影片講義
+
+以下為深入淺出 EOFv1 影片講義的目錄，每個章節皆有對應的影片連結。
+
+## 目錄
+
+1. [前言](https://docs.google.com/presentation/d/1A-cj0wJWqQOxbayYWUviqyBo1PvDCMOCJfj_fS526GQ/edit?usp=sharing)
+1. [什麼是以太坊虛擬機](https://docs.google.com/presentation/d/1oTdYZaZNu4_w223Mlz7Kf0TT5yYvO8eTuolzGpK4WR4/edit?usp=sharing)
+1. [什麼是以太坊虛擬機組合語言](https://docs.google.com/presentation/d/1rr8zS8DJ9OBT38WeGiT489M_nU8g0vKEdPingNEMUbQ/edit?usp=sharing)
+1. [什麼是以太坊虛擬機操作碼](https://docs.google.com/presentation/d/1fr9X-3au4nXmoTh_HjaLjptPY8x-MI4QqpzKC5uA87U/edit?usp=sharing)
+1. [什麼是智慧合約](https://docs.google.com/presentation/d/1CL9X0mXZ2mXijZJizhRADjTqAWew6Irs_tHEOts2_74/edit?usp=sharing)
+1. [如何撰寫一份智慧合約，以 Solidity 為例](https://docs.google.com/presentation/d/15nF0KcwWheuXd5IvrA2OCexsreg3g__cyWPhe33UXGI/edit?usp=sharing)
+1. [如何將智慧合約編譯成以太坊虛擬機位元組碼](https://docs.google.com/presentation/d/18pCqwjggU424hbcmx9FEYjglX21dXS3qyJwfCQWvqWg/edit?usp=sharing)
+1. [如何將智慧合約部署到以太坊主網](https://docs.google.com/presentation/d/1JeKN6U8FI3H4if7PWMTBttdafUZ6YVes6jDNHvDx3OU/edit?usp=sharing)
+1. [如何與智慧合約互動](https://docs.google.com/presentation/d/1dBoyT5pytC7qMo8ieejppBL4BEWMEUzF-h0wO19n7rk/edit?usp=sharing)
+1. [EIP-7692 EVM Object Format (EOF) v1 Meta](https://docs.google.com/presentation/d/1Xb_ZQnE5W2--x04uLF9EPQUlEjaKcNL4Hz5vDQ3vOqo/edit?usp=sharing)
+1. [EOFv1 Magic & EIP-3541](https://docs.google.com/presentation/d/1GqR9AoiDV1smUW-c0iEstlwOUv7JcjRxQLw2MF_1lho/edit?usp=sharing)
+1. [EIP-3540 EOFv1](https://docs.google.com/presentation/d/1KVnZrf82xTeVpjqKN0km8MRgGGRcKlLHWOpl_envS3k/edit?usp=sharing)
+1. [現在的合約是怎麼驗證的](https://docs.google.com/presentation/d/1SCDIjkFlHEaxp3Z8jE4_J7PwGcvxxXHbGBOkDqEXG9Y/edit?usp=sharing)
+1. [EIP-3670: EOF - Code Validation](https://docs.google.com/presentation/d/118HX-YkCT_lhml31ZH-TUzNR7kTJjBAlaQNS5wjhkGs/edit?usp=sharing)
+1. [現在的合約是怎麼處理 JUMP 的](https://docs.google.com/presentation/d/1LjLTF9JnZX7gwCaiQR_HHWtYtrqUqNk0gZKEvvmWQ2Q/edit?usp=sharing)
+1. [EIP-4200: EOF - Static relative jumps](https://docs.google.com/presentation/d/1gscGdLjzmRY0fSKQtQ1O68U-QW9kkXlkJ1aEYc1hynY/edit?usp=sharing)
+1. [現在的合約是如何存取 Data 的](https://docs.google.com/presentation/d/15YM1Ga4vJwbW7Ttmnrj6bizx51TxRlKHrXVL9vf75q0/edit?usp=sharing)
+1. [EIP-7480: EOF - Data section access instructions](https://docs.google.com/presentation/d/10AiAjhNEMIOTbmk-2VEPHHm8ToEmlDga4fRV4e-8TXQ/edit?usp=sharing)
+1. [現在的合約是如何處理 Stack 的](https://docs.google.com/presentation/d/1n5L4_GQNEgRySiGPc9u7okz_cuMUH1xYkX4oLyKIVtY/edit?usp=sharing)
+1. [EIP-663: Introducing SWAPN, DUPN, and EXCHANGE Instructions in the EVM](https://docs.google.com/presentation/d/1jaYfk-ezC5dU2GeXR6KkSDdncskHSOolnjLIiZ3cRoc/edit?usp=sharing)
+1. [現在的合約是如何處理 CALL 的](https://docs.google.com/presentation/d/1RgWWoCCdQmmN2XMt-VtEbAyZbJQsV19OuN4kK-vDT-w/edit?usp=sharing)
+1. [EIP-7069: Revamped CALL instructions](https://docs.google.com/presentation/d/15tDA8WvHdK7wIic6xMBuketpmRELMgvpJVj9qzJM3KI/edit?usp=sharing)
+1. [EIP-4750 Functions](https://docs.google.com/presentation/d/180LPQndz_RVsLTW7KLNfk2P4eji8IAfrlA7AfN50tMc/edit?usp=sharing)
+1. [EIP-6206 Non-returning functions](https://docs.google.com/presentation/d/1FWxSEZeQE_Xwe8ZNVsl0MUzJLA4843RmpZXwkW21Lrc/edit?usp=sharing)
+1. [現在的合約是怎麼處理部署新合約的](https://docs.google.com/presentation/d/1I2c-pR-I3zecWg__q_nps99-DXSv0Tl1z6oUmyjZe7U/edit?usp=sharing)
+1. [EIP-7620 EOF Contract Creation](https://docs.google.com/presentation/d/1VwBG_tzXsOR4D5quIzBEyjsq71PEN1HlKZLaruwas0o/edit?usp=sharing)
+1. [EIP-7698 EOF Creation transaction](https://docs.google.com/presentation/d/1bh09-ED2l0Wje3T_0ZfzOiPB7C_FswGn3eu9HKC7Hio/edit?usp=sharing)
+1. [EIP-5450: EOF - Stack Validation](https://docs.google.com/presentation/d/1qvMvJj47JK-SA6CHDKMjRRernP9Ze7o5l6Z8zD9EbhI/edit?usp=sharing)
+1. [目前 EOFv1 實作進度](https://docs.google.com/presentation/d/1s1t4tdENO05J1xYJUQhIlataFQ92h88zSvLayl_4mJo/edit?usp=sharing)
+1. [總結](https://docs.google.com/presentation/d/1bmUhxMKdFybj7wBLWlL7Zfwkpsqvf51y4rwvbyzjugE/edit?usp=sharing)
