@@ -35,4 +35,9 @@
 * [2022 鐵人賽：那些關於 Ethereum 的事](https://ithelp.ithome.com.tw/users/20083367/ironman/5136)
 * [許願池](https://github.com/hydai/solidity-book/issues)
 
+## 授權規則
+
+本網站的文章、教學影片、與講義，除了特別標註之外，皆採用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant) 授權。
+另外，本網站的程式碼範例，則採用 [MIT License](https://opensource.org/licenses/MIT) 授權釋出。
+
 [1]: https://youtube.com/playlist?list=PLHmOMPRfmOxSJcrlwyandWYiuP9ZAMYoF
