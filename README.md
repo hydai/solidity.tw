@@ -8,9 +8,10 @@
 2. [在 2022 年，我們該如何寫智慧合約](https://www.youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM)：為一系列以智慧合約程式語言 Soliidty 0.8.x 為基礎的影片教學課程。
 3. 在智慧合約背後，你不知道的事：為一系列相對進階的智慧合約開發技巧的文章與教學影片（目前還在規劃中，預計 2023 年六月底前發布）。
 4. [淺入淺出 EVM Object Format](https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN)：為一系列以 EVM Object Format 為主題的影片教學課程。包含但不限於 EIP-7692 所包含的 EIPs 與 EOFv1 的優點和改進的好處。
-5. [深入淺出 EVM Object Format](/head-first-eof)：為一系列以 EVM Object Format 為主題的教學課程，包含影片與文章，為「淺入淺出 EOF」的重製版本。將以完全初學者的角度入手，從各種背景知識開始介紹，由淺入深的讓讀者對 EOF 能有更完整的印象。
+5. 深入淺出 EVM Object Format：為一系列以 EVM Object Format 為主題的教學課程，包含影片與文章，為「淺入淺出 EOF」的重製版本。將以完全初學者的角度入手，從各種背景知識開始介紹，由淺入深的讓讀者對 EOF 能有更完整的印象。
     * [影片播放清單(尚未公開，正在錄製中)]()。
     * [影片講義](/head-first-eof-lecture-notes)：為影片的講義。
+    * [文章(正在施工中)]()：為以文章方式的脈絡來講述 EOFv1 的細節，正在施工中，預計 2025 Q1 結尾完成。
 6. 那些觀眾想知道的事：為觀眾透過 GitHub Issue 向海帶我提問的主題或者問題，將會以文章的方式來呈現（目前還在寫作中，等 5 完成以後才會繼續進行）
 
 如果你有想看的主題，或者認為哪些主題應該被涵蓋在本書中，請[使用 GitHub Issue](https://github.com/hydai/solidity.tw/issues/new/choose) 來進行發問。
