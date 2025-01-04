@@ -1,13 +1,16 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug report 回報臭蟲
+about: Create a report to help us improve 發現問題了嗎？告訴我吧！
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
 
 ---
 
+***Chinese version below 中文版本在下方***
+
 **Describe the bug**
+
 A clear and concise description of what the bug is.
 
 **To Reproduce**
@@ -36,3 +39,33 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+---
+
+**描述問題所在**
+
+請清楚地說明臭蟲的細節，以方便我們知道怎麼應對。
+
+** 如何重現問題？**
+請詳細說明重現問題的步驟：
+1. 前往 '...' 頁面
+2. 點擊 '....' 按鈕
+3. 捲動至 '....' 的區段
+4. 看到錯誤訊息
+
+**預期行為**
+
+請清楚地說明你預期發生的結果。
+
+**螢幕截圖**
+
+如果有需要，請提供螢幕截圖以協助解釋問題。
+
+**裝置資訊**
+ - 作業系統: [例如 iOS]
+ - 瀏覽器: [例如 chrome, safari]
+ - 版本: [例如 22]
+
+**其他需要讓我知道的事情**
+
+請在這裡提供任何其他相關的資訊。
