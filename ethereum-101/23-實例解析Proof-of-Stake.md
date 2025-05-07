@@ -2,17 +2,17 @@
 
 ## 關於此書
 
-![](https://i.imgur.com/pzgrA8F.jpg)
+![PoS Tweet](https://i.imgur.com/pzgrA8F.jpg)
 
 以太坊聯合創始人 Vitalik Buterin 在 2022/8/31 宣佈他將發布一本新書「Proof of Stake」，將包含實體版（可以從各大通路買到）與數位版（一本 PDF）。書中總結了他過去十年來的各種寫作精華。
 
 如果透過 gitcoin 的數位通路進行捐款，將可以獲得數位簽名版加上一個 NFT 作為回饋。
 
-該募資網站： https://proofofstake.gitcoin.co
+該募資網站： <https://proofofstake.gitcoin.co>
 
 ## 捐款後的 NFT
 
-![](https://i.imgur.com/bxqLltK.png)
+![PoS NFT](https://i.imgur.com/bxqLltK.png)
 
 如上圖，在捐款後所獲得的 NFT 會紀錄什麼時候鑄造的、捐款多少、與合約地址。
 
@@ -54,9 +54,11 @@ ProofOfStake_Pages
 ### `Transforms.sol`
 
 `Transforms` 是一個輔助合約，他提供以下幾個功能：
+
 1. 將簽名（signature）還原出構成的 `v`, `r`, `s` 三個部分。
 2. 把位址（address）轉成字串（string）
 3. 將一個位元組（bytes1）轉成字元（依然是 bytes1，但轉成可視範圍）
+
 ```solidity
 pragma solidity >=0.8.0 <0.9.0;
 
@@ -114,6 +116,7 @@ library Transforms {
 關於 base64 格式的細節，請[參考維基百科](https://zh.wikipedia.org/zh-tw/Base64)
 
 提供對 base64 格式的編碼與解碼函式：
+
 1. `encode`：將一段資料（bytes 格式）編碼成一串 base64 格式的字串（string）
 2. `decode`：將 base64 格式的字串（string）解碼成原始資料（bytes）
 

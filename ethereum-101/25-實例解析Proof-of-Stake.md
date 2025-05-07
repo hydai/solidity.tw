@@ -35,6 +35,7 @@ ProofOfStake_Pages
 ### `Ownable.sol`
 
 `Ownable` 是一個輔助合約，讓繼承的合約可以擁有對合約的存取管理權限，它提供了以下功能：
+
 1. 合約建立時在 `constructor` 階段，將 owner 設定成 `msg.sender`。
 2. 提供了 `OwnershipTransferred` 的事件，當合約的擁有者轉移時觸發。
 3. 提供 `owner` 函式用來查詢當前的擁有者。
@@ -43,7 +44,6 @@ ProofOfStake_Pages
 6. 提供 `transferOwnership` 函式，用來轉移擁有者。
 
 值得一提的是，為了較佳的可讀性，與避免重複的程式碼出現，我們可以發現所有設定 `owner` 的操作都是透過呼叫一個特別的內部函式 `_setOwner`。
-
 
 ```solidity
 // SPDX-License-Identifier: MIT

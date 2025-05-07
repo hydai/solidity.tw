@@ -35,12 +35,12 @@ ProofOfStake_Pages
 ### `Counters.sol`
 
 `Counters` 是一個輔助合約，他提供了計數器的功能：
+
 1. 提供一個資料結構 `Counter` 為一個 `uint256` 的計數器，且初始值為 `0`。
 2. 當要拿到當前的數值時，呼叫 `current(Counter)` 而不應該直接讀取 `Counter._value`
 3. 要增加一次計數時，呼叫 `increment(Counter)`
 4. 要減少一次計數時，呼叫 `decrement(Counter)`
 5. 若要重設計數器，呼叫 `reset(Counter)`
-
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -90,10 +90,10 @@ library Counters {
 ### `Strings.sol`
 
 `Strings` 是一個輔助合約，他提供了字串處理的功能：
+
 1. `toString(uint256 value)`：將一個 `uint256` 的非負整數轉換成以 `ASCII` 編碼的字串。
 2. `toHexString(uint256 value)`：將一個 `uint256` 的非負整數轉換成以 `ASCII` 編碼且以十六進位表示的字串。
 3. `toHexString(uint256 value, uint256 length)`：將一個 `uint256` 的非負整數轉換成以 `ASCII` 編碼且以十六進位表示的字串，並指定輸出的字串長度。
-
 
 ```solidity
 // SPDX-License-Identifier: MIT

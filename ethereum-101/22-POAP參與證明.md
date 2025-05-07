@@ -26,17 +26,17 @@ POAP 被設計出來作為一種數位回憶，在他的格式中記錄了「該
 
 如下圖，是我在 2018~2019 年貢獻過 solidity 與 go-ethereum 兩個專案所獲得的 POAP。
 
-![](https://i.imgur.com/WcRtzol.png)
+![POAP20182019](https://i.imgur.com/WcRtzol.png)
 
-![](https://i.imgur.com/Tz4mq93.png)
+![POAP2019](https://i.imgur.com/Tz4mq93.png)
 
 ### 捐款證明
 
 比如說以下的 POAP 就是在 Mainnet Merge 派對時，只要捐款到特定帳號，就能獲得這枚捐款 POAP。
 
-![](https://i.imgur.com/XslYY7y.png)
+![Mainnet Merge POAP](https://i.imgur.com/XslYY7y.png)
 
-本次捐款活動細節，可以參考以下影片： https://www.youtube.com/watch?v=ZY7eXUn7Mpo
+本次捐款活動細節，可以參考以下影片： <https://www.youtube.com/watch?v=ZY7eXUn7Mpo>
 
 ## 相關連結
 

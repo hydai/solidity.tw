@@ -48,7 +48,6 @@ ProofOfStake_Pages
 6. `functionDelegateCall`：用來取代 Solidity 內建的 `low level delegatecall` 函式。
 7. `verifyCallResult`：用來驗證上面幾個 `call` 系列的函式是否執行成功。若失敗，則觸發 `revert`。
 
-
 ```solidity
 // SPDX-License-Identifier: MIT
 
