@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EIP-6206 - JUMPF 與非回傳函式 | 一本關於 Ethereum 與 Solidity 智能合約的書</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="在 2022 年，我們該如何學習智能合約開發">
+    
+    <link rel="preload" href="/assets/css/0.styles.9f477098.css" as="style"><link rel="preload" href="/assets/js/app.8b20afe5.js" as="script"><link rel="preload" href="/assets/js/2.ce7b5ffa.js" as="script"><link rel="preload" href="/assets/js/1.843ff0e7.js" as="script"><link rel="preload" href="/assets/js/63.27478a7c.js" as="script"><link rel="prefetch" href="/assets/js/10.c12fac62.js"><link rel="prefetch" href="/assets/js/11.c2affc04.js"><link rel="prefetch" href="/assets/js/12.f054eba6.js"><link rel="prefetch" href="/assets/js/13.e4d40fa1.js"><link rel="prefetch" href="/assets/js/14.ed0a28d5.js"><link rel="prefetch" href="/assets/js/15.d25bd3fe.js"><link rel="prefetch" href="/assets/js/16.97c2c4a8.js"><link rel="prefetch" href="/assets/js/17.849d402a.js"><link rel="prefetch" href="/assets/js/18.cdc68d17.js"><link rel="prefetch" href="/assets/js/19.e30826d9.js"><link rel="prefetch" href="/assets/js/20.8effbcd5.js"><link rel="prefetch" href="/assets/js/21.9653cdd5.js"><link rel="prefetch" href="/assets/js/22.b7240f47.js"><link rel="prefetch" href="/assets/js/23.24125751.js"><link rel="prefetch" href="/assets/js/24.9184f376.js"><link rel="prefetch" href="/assets/js/25.60abcfaf.js"><link rel="prefetch" href="/assets/js/26.e699b744.js"><link rel="prefetch" href="/assets/js/27.802ae9a5.js"><link rel="prefetch" href="/assets/js/28.ec93b5b4.js"><link rel="prefetch" href="/assets/js/29.7635b5b0.js"><link rel="prefetch" href="/assets/js/3.16c4453f.js"><link rel="prefetch" href="/assets/js/30.f298419f.js"><link rel="prefetch" href="/assets/js/31.1a21d7a4.js"><link rel="prefetch" href="/assets/js/32.14fd2d9a.js"><link rel="prefetch" href="/assets/js/33.33a6c23b.js"><link rel="prefetch" href="/assets/js/34.2ccf4e58.js"><link rel="prefetch" href="/assets/js/35.27e3d54a.js"><link rel="prefetch" href="/assets/js/36.ed0c3bfa.js"><link rel="prefetch" href="/assets/js/37.09d02370.js"><link rel="prefetch" href="/assets/js/38.ef4141df.js"><link rel="prefetch" href="/assets/js/39.15fc33ad.js"><link rel="prefetch" href="/assets/js/4.7b5274ce.js"><link rel="prefetch" href="/assets/js/40.0c8f408e.js"><link rel="prefetch" href="/assets/js/41.0165e0c7.js"><link rel="prefetch" href="/assets/js/42.37e3dbc1.js"><link rel="prefetch" href="/assets/js/43.f1b1ce3c.js"><link rel="prefetch" href="/assets/js/44.0c623027.js"><link rel="prefetch" href="/assets/js/45.a9d47927.js"><link rel="prefetch" href="/assets/js/46.a01f013b.js"><link rel="prefetch" href="/assets/js/47.2941f6f7.js"><link rel="prefetch" href="/assets/js/48.ca95021b.js"><link rel="prefetch" href="/assets/js/49.661853c3.js"><link rel="prefetch" href="/assets/js/5.a90aa973.js"><link rel="prefetch" href="/assets/js/50.b054b2ac.js"><link rel="prefetch" href="/assets/js/51.a77781e8.js"><link rel="prefetch" href="/assets/js/52.49f60f8e.js"><link rel="prefetch" href="/assets/js/53.5adc043f.js"><link rel="prefetch" href="/assets/js/54.1ea9691e.js"><link rel="prefetch" href="/assets/js/55.5fcea348.js"><link rel="prefetch" href="/assets/js/56.0dc7d239.js"><link rel="prefetch" href="/assets/js/57.3ee610e6.js"><link rel="prefetch" href="/assets/js/58.7d9a1874.js"><link rel="prefetch" href="/assets/js/59.59da2c66.js"><link rel="prefetch" href="/assets/js/6.acf7bb6e.js"><link rel="prefetch" href="/assets/js/60.36ea9c01.js"><link rel="prefetch" href="/assets/js/61.b6a7b2a2.js"><link rel="prefetch" href="/assets/js/62.c603f407.js"><link rel="prefetch" href="/assets/js/64.beef5418.js"><link rel="prefetch" href="/assets/js/65.598dac1a.js"><link rel="prefetch" href="/assets/js/66.94bac111.js"><link rel="prefetch" href="/assets/js/67.c4c643de.js"><link rel="prefetch" href="/assets/js/7.dfcce160.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.d9dffa33.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9f477098.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一本關於 Ethereum 與 Solidity 智能合約的書</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link">
+  那些關於 Ethereum 的事
+</a></div><div class="nav-item"><a href="https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  在 2022 年，我們該如何寫智能合約
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  淺入淺出 EVM Object Format
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link">
+  那些關於 Ethereum 的事
+</a></div><div class="nav-item"><a href="https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  在 2022 年，我們該如何寫智能合約
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  淺入淺出 EVM Object Format
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Head First Eof</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/head-first-eof/" aria-current="page" class="sidebar-link">深入淺出 EOFv1</a></li><li><a href="/head-first-eof/10-EIP-3541.html" class="sidebar-link">EIP-3541 禁止以 0xEF 開頭的新智慧合約</a></li><li><a href="/head-first-eof/11-EIP-3540.html" class="sidebar-link">EIP-3540 電腦程式的新衣服 - EVM 物件格式 (EOF)</a></li><li><a href="/head-first-eof/12-EIP-3670.html" class="sidebar-link">EIP-3670: 智慧合約的程式碼檢查</a></li><li><a href="/head-first-eof/13-EIP-4200.html" class="sidebar-link">EIP-4200：EOF - 靜態相對跳躍</a></li><li><a href="/head-first-eof/14-EIP-7480.html" class="sidebar-link">EIP-7480: EOF - 資料區段存取指令</a></li><li><a href="/head-first-eof/15-EIP-663.html" class="sidebar-link">EIP-663：SWAPN、DUPN 和 EXCHANGE 指令</a></li><li><a href="/head-first-eof/16-EIP-7069.html" class="sidebar-link">EIP-7069 改良版呼叫指令</a></li><li><a href="/head-first-eof/17-EIP-4750.html" class="sidebar-link">EIP-4750 EOF 函式功能</a></li><li><a href="/head-first-eof/18-EIP-6206.html" aria-current="page" class="active sidebar-link">EIP-6206 - JUMPF 與非回傳函式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#注意事項" class="sidebar-link">注意事項</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#摘要" class="sidebar-link">摘要</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#目的" class="sidebar-link">目的</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#實際例子-費波那契數列計算" class="sidebar-link">實際例子：費波那契數列計算</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#規格" class="sidebar-link">規格</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/18-EIP-6206.html#原理" class="sidebar-link">原理</a></li></ul></li><li><a href="/head-first-eof/19-EIP-7620.html" class="sidebar-link">EIP-7620：EOF 合約部署新方式</a></li><li><a href="/head-first-eof/20-EIP-7698.html" class="sidebar-link">EIP-7698: EOF - 部署交易</a></li><li><a href="/head-first-eof/21-EIP-5450.html" class="sidebar-link">EIP-5450: EOF - 堆疊驗證</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="eip-6206-jumpf-與非回傳函式"><a href="#eip-6206-jumpf-與非回傳函式" class="header-anchor">#</a> EIP-6206 - JUMPF 與非回傳函式</h1> <h2 id="注意事項"><a href="#注意事項" class="header-anchor">#</a> 注意事項</h2> <p>本文並沒有經過作者外的其他審查者審核，因此若內容有誤，請到 issue 區提出問題，我會儘速修改，謝謝。</p> <h2 id="摘要"><a href="#摘要" class="header-anchor">#</a> 摘要</h2> <p>本 EIP 是對於 EIP-4750 EOF 函式的擴充，提供尾端呼叫最佳化機制，透過加入了一個新指令 <code>JUMPF</code>，可在不新增回傳堆疊框架的情況下跳轉至其他程式碼區段。</p> <p>同時也擴充了型別區段的格式，允許標註某個區段為「非回傳區段」，並為跳轉至這類區段的 <code>JUMPF</code> 指令提供簡化的堆疊驗證邏輯。</p> <h2 id="目的"><a href="#目的" class="header-anchor">#</a> 目的</h2> <p>在常見的函式設計中，某些函式在執行結束時只會呼叫另一個函式然後立即回傳。<code>JUMPF</code> 能在不需建立新回傳堆疊框架的情況下，切換至另一個區段執行，進而最佳化這類尾端呼叫行為。</p> <p>若在驗證階段已能確定某函式永遠不會將控制流程回傳給呼叫端，則使用 <code>JUMPF</code> 時可將其視為終止指令，允許操作數堆疊在執行終止時保留額外資料。這將提供編譯器更多最佳化空間，無論是在程式碼體積或 gas 消耗上皆具優勢。</p> <p>此特性特別適用於以 <code>REVERT</code> 結尾的錯誤處理輔助函式。這些輔助函式經常在多個分支中重複使用，若無需在 <code>JUMPF</code> 前先移除堆疊上的多餘項目，就能以更有效率的方式進行抽取與重用。</p> <h2 id="實際例子-費波那契數列計算"><a href="#實際例子-費波那契數列計算" class="header-anchor">#</a> 實際例子：費波那契數列計算</h2> <p>費波那契數列定義如下：</p> <ul><li>F(0) = 0</li> <li>F(1) = 1</li> <li>F(n) = F(n-1) + F(n-2)，當 n &gt; 1</li></ul> <h3 id="傳統方法-使用-callf-與-retf"><a href="#傳統方法-使用-callf-與-retf" class="header-anchor">#</a> 傳統方法（使用 CALLF 與 RETF）</h3> <p>區段 0（主程式）:
+PUSH 10         // 計算 F(10)
+CALLF 1         // 呼叫費波那契函式
+STOP            // 結束執行</p> <p>區段 1（fib 函式）:
+DUP1            // 複製 n
+PUSH 2
+LT              // n &lt; 2 ?
+JUMPI base_case // 是的話跳到基本情況</p> <p>DUP1
+PUSH 1
+SWAP1
+SUB             // n-1
+CALLF 1         // 呼叫 F(n-1)</p> <p>SWAP1
+PUSH 2
+SWAP1
+SUB             // n-2
+CALLF 1         // 呼叫 F(n-2)</p> <p>ADD             // F(n-1) + F(n-2)
+RETF</p> <p>base_case:
+RETF            // 回傳 n（F(0) 或 F(1)）</p> <h3 id="使用尾端遞迴與-jumpf-最佳化版本"><a href="#使用尾端遞迴與-jumpf-最佳化版本" class="header-anchor">#</a> 使用尾端遞迴與 JUMPF 最佳化版本</h3> <p>我們可以將此函式改寫為尾端遞迴形式，並在最後使用 <code>JUMPF</code>：</p> <p>區段 0（主程式，非回傳）:
+PUSH 10         // n
+PUSH 0          // a = F(0)
+PUSH 1          // b = F(1)
+JUMPF 1         // 進入 fibTail 區段</p> <p>區段 1（fibTail 函式）:
+// Stack: [n, a, b]
+DUP1
+ISZERO
+JUMPI return_a  // 若 n == 0，回傳 a</p> <p>SWAP1
+DUP3
+ADD             // 計算 a+b
+SWAP2
+PUSH 1
+SWAP1
+SUB             // n-1
+SWAP1
+SWAP2           // 參數變為 [a+b, n-1, b]</p> <p>JUMPF 1         // 尾呼叫 fibTail(n-1, b, a+b)</p> <p>return_a:
+SWAP1
+SWAP2
+POP
+POP
+RETF</p> <h3 id="執行流程比較"><a href="#執行流程比較" class="header-anchor">#</a> 執行流程比較</h3> <div class="language-txt extra-class"><pre class="language-txt"><code>傳統方法:                           使用 JUMPF 優化:
++—————+                  +––––––––+
+| CALLF fib(10) |                  | JUMPF fibTail  |
++—————+                  +––––––––+
+|                                  |
+v                                  v
++—————+                  +––––––––+
+| 建立回傳框架   |                  | 無需建立回傳框架 |
++—————+                  +––––––––+
+|                                  |
+v                                  v
+遞迴呼叫                          迭代執行
+(堆疊框架增長)                     (不增加堆疊框架)
+|                                  |
+v                                  v
++—————+                  +––––––––+
+| 多次 CALLF/RETF|                  | 多次 JUMPF     |
++—————+                  +––––––––+
+|                                  |
+v                                  v
++—————+                  +––––––––+
+| 回傳堆疊展開   |                  | 當 n=0 時回傳   |
++—————+                  +––––––––+
+</code></pre></div><h2 id="規格"><a href="#規格" class="header-anchor">#</a> 規格</h2> <h3 id="型別區段變更"><a href="#型別區段變更" class="header-anchor">#</a> 型別區段變更</h3> <p>若某區段在執行後永遠不會回傳，則可標記為「非回傳區段」。此類區段的 <code>outputs</code> 欄位在型別區段中設為 <code>0x80</code>。</p> <p>第一個程式碼區段，即 main 程式區段必須為非回傳區段，且不接受任何輸入。</p> <h3 id="執行語意"><a href="#執行語意" class="header-anchor">#</a> 執行語意</h3> <p>新增指令：<code>JUMPF (0xe5)</code></p> <ol><li><code>JUMPF</code> 具一個立即參數 <code>target_section_index</code>，為 16 位元無號 big-endian 整數，代表目標的程式碼區段。</li> <li>若執行後的堆疊深度超過 <code>1024 - type[target].max_stack_increase</code>，則導致異常終止。</li> <li>執行時會將目前區段設為目標區段，<code>PC</code> 設為 0，但不更動回傳堆疊。</li> <li>消耗 5 gas。</li> <li>不對操作數堆疊進行 pop 或 push 操作。</li></ol> <p>對於傳統位元組碼，執行 <code>JUMPF</code> 將觸發異常終止。</p> <h3 id="程式碼驗證"><a href="#程式碼驗證" class="header-anchor">#</a> 程式碼驗證</h3> <p>對每個 <code>JUMPF</code>：</p> <ul><li><code>target_section_index</code> 必須小於區段總數。</li> <li>需滿足以下條件之一：
+<ul><li><code>type[current].outputs</code> ≥ <code>type[target].outputs</code></li> <li>或 <code>type[target].outputs == 0x80</code></li></ul></li> <li>若跳轉至非回傳區段，需滿足：<code>stack_height_min &gt;= type[target].inputs</code></li> <li>若跳轉至可回傳區段，需滿足：<code>stack_height_min == stack_height_max == type[current].outputs - type[target].outputs + type[target].inputs</code></li> <li><code>stack_height_max ≤ 1024 - type[target].max_stack_increase</code></li> <li><code>JUMPF</code> 被視為終止指令，不可有後續指令</li> <li>若任何 <code>RJUMP*</code> 偏移至 <code>JUMPF</code> 的立即參數部分，驗證失敗</li> <li><code>CALLF</code> 不可呼叫非回傳區段（即 <code>outputs == 0x80</code>）</li></ul> <h4 id="非回傳狀態驗證"><a href="#非回傳狀態驗證" class="header-anchor">#</a> 非回傳狀態驗證</h4> <p>當且僅當某區段不含 <code>RETF</code> 且僅使用 <code>JUMPF</code> 指向其他非回傳區段時，該區段才可被標記為非回傳。</p> <h2 id="原理"><a href="#原理" class="header-anchor">#</a> 原理</h2> <h3 id="為何允許跳轉至輸出較少的區段"><a href="#為何允許跳轉至輸出較少的區段" class="header-anchor">#</a> 為何允許跳轉至輸出較少的區段？</h3> <p>為避免重複程式碼，<code>JUMPF</code> 允許從輸出較多的區段跳轉至輸出較少的區段，只要這些額外的輸出已在目前區段補足。這樣一來，共用的輔助函式就可以通用使用，無需硬性對應輸出數量。</p> <div class="language-txt extra-class"><pre class="language-txt"><code>傳統函式模式：                      使用 JUMPF 的優化模式：
++––––+                          +––––+
+| 函式 A  |                          | 函式 A  |
++––––+                          +––––+
+|                                   |
+| CALLF B                           | JUMPF B
+|                                   |
+v                                   v
++––––+                          +––––+
+| 函式 B  |                          | 函式 B  |
++––––+                          +––––+
+|                                   |
+| RETF                              | (無需回傳)
+|                                   |
+v                                   |
++––––+                              |
+| 函式 A  |                              |
++––––+                              |
+|                                   |
+| RETF                              |
+v                                   v
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/hydai/solidity.tw/edit/master/head-first-eof/18-EIP-6206.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2025/5/21 下午3:16:22</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/head-first-eof/17-EIP-4750.html" class="prev">
+        EIP-4750 EOF 函式功能
+      </a></span> <span class="next"><a href="/head-first-eof/19-EIP-7620.html">
+        EIP-7620：EOF 合約部署新方式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.8b20afe5.js" defer></script><script src="/assets/js/2.ce7b5ffa.js" defer></script><script src="/assets/js/1.843ff0e7.js" defer></script><script src="/assets/js/63.27478a7c.js" defer></script>
+  </body>
+</html>

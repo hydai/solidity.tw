@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EIP-7698: EOF - 部署交易 | 一本關於 Ethereum 與 Solidity 智能合約的書</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="在 2022 年，我們該如何學習智能合約開發">
+    
+    <link rel="preload" href="/assets/css/0.styles.9f477098.css" as="style"><link rel="preload" href="/assets/js/app.8b20afe5.js" as="script"><link rel="preload" href="/assets/js/2.ce7b5ffa.js" as="script"><link rel="preload" href="/assets/js/1.843ff0e7.js" as="script"><link rel="preload" href="/assets/js/65.598dac1a.js" as="script"><link rel="prefetch" href="/assets/js/10.c12fac62.js"><link rel="prefetch" href="/assets/js/11.c2affc04.js"><link rel="prefetch" href="/assets/js/12.f054eba6.js"><link rel="prefetch" href="/assets/js/13.e4d40fa1.js"><link rel="prefetch" href="/assets/js/14.ed0a28d5.js"><link rel="prefetch" href="/assets/js/15.d25bd3fe.js"><link rel="prefetch" href="/assets/js/16.97c2c4a8.js"><link rel="prefetch" href="/assets/js/17.849d402a.js"><link rel="prefetch" href="/assets/js/18.cdc68d17.js"><link rel="prefetch" href="/assets/js/19.e30826d9.js"><link rel="prefetch" href="/assets/js/20.8effbcd5.js"><link rel="prefetch" href="/assets/js/21.9653cdd5.js"><link rel="prefetch" href="/assets/js/22.b7240f47.js"><link rel="prefetch" href="/assets/js/23.24125751.js"><link rel="prefetch" href="/assets/js/24.9184f376.js"><link rel="prefetch" href="/assets/js/25.60abcfaf.js"><link rel="prefetch" href="/assets/js/26.e699b744.js"><link rel="prefetch" href="/assets/js/27.802ae9a5.js"><link rel="prefetch" href="/assets/js/28.ec93b5b4.js"><link rel="prefetch" href="/assets/js/29.7635b5b0.js"><link rel="prefetch" href="/assets/js/3.16c4453f.js"><link rel="prefetch" href="/assets/js/30.f298419f.js"><link rel="prefetch" href="/assets/js/31.1a21d7a4.js"><link rel="prefetch" href="/assets/js/32.14fd2d9a.js"><link rel="prefetch" href="/assets/js/33.33a6c23b.js"><link rel="prefetch" href="/assets/js/34.2ccf4e58.js"><link rel="prefetch" href="/assets/js/35.27e3d54a.js"><link rel="prefetch" href="/assets/js/36.ed0c3bfa.js"><link rel="prefetch" href="/assets/js/37.09d02370.js"><link rel="prefetch" href="/assets/js/38.ef4141df.js"><link rel="prefetch" href="/assets/js/39.15fc33ad.js"><link rel="prefetch" href="/assets/js/4.7b5274ce.js"><link rel="prefetch" href="/assets/js/40.0c8f408e.js"><link rel="prefetch" href="/assets/js/41.0165e0c7.js"><link rel="prefetch" href="/assets/js/42.37e3dbc1.js"><link rel="prefetch" href="/assets/js/43.f1b1ce3c.js"><link rel="prefetch" href="/assets/js/44.0c623027.js"><link rel="prefetch" href="/assets/js/45.a9d47927.js"><link rel="prefetch" href="/assets/js/46.a01f013b.js"><link rel="prefetch" href="/assets/js/47.2941f6f7.js"><link rel="prefetch" href="/assets/js/48.ca95021b.js"><link rel="prefetch" href="/assets/js/49.661853c3.js"><link rel="prefetch" href="/assets/js/5.a90aa973.js"><link rel="prefetch" href="/assets/js/50.b054b2ac.js"><link rel="prefetch" href="/assets/js/51.a77781e8.js"><link rel="prefetch" href="/assets/js/52.49f60f8e.js"><link rel="prefetch" href="/assets/js/53.5adc043f.js"><link rel="prefetch" href="/assets/js/54.1ea9691e.js"><link rel="prefetch" href="/assets/js/55.5fcea348.js"><link rel="prefetch" href="/assets/js/56.0dc7d239.js"><link rel="prefetch" href="/assets/js/57.3ee610e6.js"><link rel="prefetch" href="/assets/js/58.7d9a1874.js"><link rel="prefetch" href="/assets/js/59.59da2c66.js"><link rel="prefetch" href="/assets/js/6.acf7bb6e.js"><link rel="prefetch" href="/assets/js/60.36ea9c01.js"><link rel="prefetch" href="/assets/js/61.b6a7b2a2.js"><link rel="prefetch" href="/assets/js/62.c603f407.js"><link rel="prefetch" href="/assets/js/63.27478a7c.js"><link rel="prefetch" href="/assets/js/64.beef5418.js"><link rel="prefetch" href="/assets/js/66.94bac111.js"><link rel="prefetch" href="/assets/js/67.c4c643de.js"><link rel="prefetch" href="/assets/js/7.dfcce160.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.d9dffa33.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9f477098.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">一本關於 Ethereum 與 Solidity 智能合約的書</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link">
+  那些關於 Ethereum 的事
+</a></div><div class="nav-item"><a href="https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  在 2022 年，我們該如何寫智能合約
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  淺入淺出 EVM Object Format
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首頁
+</a></div><div class="nav-item"><a href="/ethereum-101/" class="nav-link">
+  那些關於 Ethereum 的事
+</a></div><div class="nav-item"><a href="https://youtube.com/playlist?list=PLHmOMPRfmOxQYDnXAc1hKY6ra4WDU8ZlM" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  在 2022 年，我們該如何寫智能合約
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.youtube.com/playlist?list=PLHmOMPRfmOxTiqyaSu1EXs8ioESZtOSHN" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  淺入淺出 EVM Object Format
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/hydai/solidity.tw" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Head First Eof</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/head-first-eof/" aria-current="page" class="sidebar-link">深入淺出 EOFv1</a></li><li><a href="/head-first-eof/10-EIP-3541.html" class="sidebar-link">EIP-3541 禁止以 0xEF 開頭的新智慧合約</a></li><li><a href="/head-first-eof/11-EIP-3540.html" class="sidebar-link">EIP-3540 電腦程式的新衣服 - EVM 物件格式 (EOF)</a></li><li><a href="/head-first-eof/12-EIP-3670.html" class="sidebar-link">EIP-3670: 智慧合約的程式碼檢查</a></li><li><a href="/head-first-eof/13-EIP-4200.html" class="sidebar-link">EIP-4200：EOF - 靜態相對跳躍</a></li><li><a href="/head-first-eof/14-EIP-7480.html" class="sidebar-link">EIP-7480: EOF - 資料區段存取指令</a></li><li><a href="/head-first-eof/15-EIP-663.html" class="sidebar-link">EIP-663：SWAPN、DUPN 和 EXCHANGE 指令</a></li><li><a href="/head-first-eof/16-EIP-7069.html" class="sidebar-link">EIP-7069 改良版呼叫指令</a></li><li><a href="/head-first-eof/17-EIP-4750.html" class="sidebar-link">EIP-4750 EOF 函式功能</a></li><li><a href="/head-first-eof/18-EIP-6206.html" class="sidebar-link">EIP-6206 - JUMPF 與非回傳函式</a></li><li><a href="/head-first-eof/19-EIP-7620.html" class="sidebar-link">EIP-7620：EOF 合約部署新方式</a></li><li><a href="/head-first-eof/20-EIP-7698.html" aria-current="page" class="active sidebar-link">EIP-7698: EOF - 部署交易</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#注意事項" class="sidebar-link">注意事項</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#摘要" class="sidebar-link">摘要</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#動機" class="sidebar-link">動機</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#規格說明" class="sidebar-link">規格說明</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#簡單範例" class="sidebar-link">簡單範例</a></li><li class="sidebar-sub-header"><a href="/head-first-eof/20-EIP-7698.html#資料結構圖解" class="sidebar-link">資料結構圖解</a></li></ul></li><li><a href="/head-first-eof/21-EIP-5450.html" class="sidebar-link">EIP-5450: EOF - 堆疊驗證</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="eip-7698-eof-部署交易"><a href="#eip-7698-eof-部署交易" class="header-anchor">#</a> EIP-7698: EOF - 部署交易</h1> <h2 id="注意事項"><a href="#注意事項" class="header-anchor">#</a> 注意事項</h2> <p>本文並沒有經過作者外的其他審查者審核，因此若內容有誤，請到 issue 區提出問題，我會儘速修改，謝謝。</p> <h2 id="摘要"><a href="#摘要" class="header-anchor">#</a> 摘要</h2> <p>部署交易（也就是「to」欄位為空的交易）可以用來部署 EOF 智慧合約，方式是在交易的 <code>data</code> 欄位中提供 EOF 初始容器，以及用於執行初始容器的 <code>calldata</code>（並將兩者串接起來）。這種初始容器的執行流程與 <code>EOFCREATE</code> 指令的執行邏輯類似，最終會以 <code>RETURNCODE</code> 指令結束。新帳戶地址的計算則是根據發送者地址與其 Nonce 值。</p> <h2 id="動機"><a href="#動機" class="header-anchor">#</a> 動機</h2> <p>部署交易是除了傳統 EVM 的部署指令之外，用來部署新程式碼的三種方式之一。由於傳統的 <code>CREATE</code> 和 <code>CREATE2</code> 指令不支援部署 EOF 格式，因此部署交易是目前部署 EOF 程式碼上鏈，除了 <code>EOFCREATE</code> (參考 EIP-7620) 以外的唯一方式。</p> <p>為了不破壞現有工具鏈的部署流程，如何傳遞建構函式參數的機制刻意與傳統部署方式相同，即把參數與初始容器串接起來即可，使得現有的部署工具無需任何修改也能無痛支援 EOF。</p> <h2 id="規格說明"><a href="#規格說明" class="header-anchor">#</a> 規格說明</h2> <p>除非另有說明，EOF 合約的部署規則應與傳統部署交易相同或類似，包括但不限於：</p> <ul><li>關於 <code>accessed_addresses</code> 與地址衝突的處理（請參考 EIP-684 與 EIP-2929）</li> <li>為初始程式碼部署的 EVM 執行環境（例如記憶體、帳戶環境）</li> <li>新合約帳戶的 Nonce 增加（請參考 EIP-161）</li> <li>部署時轉帳的餘額驗證與轉移邏輯</li></ul> <h3 id="常數定義"><a href="#常數定義" class="header-anchor">#</a> 常數定義</h3> <table><thead><tr><th>常數名稱</th> <th>值</th></tr></thead> <tbody><tr><td><code>EOF_MAGIC</code></td> <td><code>0xEF00</code>（定義於 EIP-3540）</td></tr> <tr><td><code>MAX_CODE_SIZE</code></td> <td><code>24576</code>（定義於 EIP-170）</td></tr></tbody></table> <p>當部署交易的 <code>data</code> 以 <code>EOF_MAGIC</code> (<code>0xEF00</code>) 開頭時，表示該 <code>data</code> 為 EOF 初始容器與 <code>calldata</code> 的串接。其處理步驟如下：</p> <ol><li>根據 EIP-3860，對整個 <code>data</code> 計算部署交易的固有 Gas 成本。</li> <li>將 <code>data</code> 分割為初始容器與 <code>calldata</code>：
+<ul><li>解析 EOF 標頭檔</li> <li>累加所有區段大小與標頭檔大小，即為完整初始容器的長度</li></ul></li> <li>驗證初始容器及其遞迴子容器，並確認：
+<ul><li><code>data_size</code> 欄位值與實際資料區段大小一致</li> <li>不包含 <code>RETURN</code> 或 <code>STOP</code> 指令</li></ul></li> <li>若標頭檔解析或驗證失敗，交易仍有效但會執行失敗。只扣除固有部署交易成本，不執行初始容器。</li> <li>剩餘的 <code>calldata</code> 作為執行初始容器時的輸入。</li> <li>執行流程如下：
+<ul><li>使用 <code>keccak256(sender || sender_nonce)[12:]</code> 計算新帳戶地址</li> <li>執行成功會以 <code>RETURNCODE{deploy_container_index}(aux_data_offset, aux_data_size)</code> 結尾
+<ul><li>從指定容器索引載入部署容器</li> <li>串接其資料區段與記憶體中 <code>(aux_data_offset, aux_data_offset + aux_data_size)</code> 片段，並更新標頭檔資料大小</li> <li>若更新後大小 &gt; <code>MAX_CODE_SIZE</code>，則異常終止</li> <li>成功部署後，<code>state[new_address].code</code> 即為更新後的部署容器</li> <li>此時不適用 EIP-3541 對 <code>0xEF</code> 開頭程式碼的禁止規定，畢竟我們確實在部署一個 EOFv1 合約</li></ul></li></ul></li> <li>最後會額外扣除 <code>200 * deployed_code_size</code> 的 Gas</li></ol> <h2 id="簡單範例"><a href="#簡單範例" class="header-anchor">#</a> 簡單範例</h2> <p>以下為一個簡單計數器合約的部署範例，初始值會透過建構函式設定：</p> <div class="language-txt extra-class"><pre class="language-txt"><code>// 計數器合約 (counter.eof)
+// 功能：儲存數字，可增加或取得
+// 建構函式參數：初始值
+
+部署交易如下：
+
+{
+  &quot;from&quot;: &quot;0x123...789&quot;,
+  &quot;to&quot;: &quot;&quot;,
+  &quot;value&quot;: 0,
+  &quot;data&quot;: &quot;0xEF00...000000000000000000000000000000000000000000000000000000000000000A&quot;
+}
+
+流程與 ASCII 示意圖
+
++-------------------------------+
+|        部署交易開始           |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| 檢查交易.data 是否以 0xEF00 開頭 |
++-------------------------------+
+             |
+             v
++-------------------------------+
+|     分割 data 為兩部分：      |
+| 1. EOF 初始容器               |
+| 2. 建構函式參數（calldata）   |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| 驗證初始容器（標頭、結構等）  |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| keccak256(sender || Nonce)[12:]|
+| → 計算新帳戶地址              |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| 執行容器並處理 calldata       |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| 執行 RETURNCODE 指令          |
+| → 回傳部署容器與附加資料     |
++-------------------------------+
+             |
+             v
++-------------------------------+
+| 儲存至區塊鏈的最終部署程式碼 |
++-------------------------------+
+</code></pre></div><h2 id="資料結構圖解"><a href="#資料結構圖解" class="header-anchor">#</a> 資料結構圖解</h2> <div class="language-txt extra-class"><pre class="language-txt"><code>交易.data 結構：
++-------------------------+------------------+
+| EOF 初始容器            | 建構參數 (10)    |
+| 0xEF00...               | 0x...0000000A    |
++-------------------------+------------------+
+
+EOF 初始容器結構：
++------------+----------+-------------+------------+-------------+
+| EOF_MAGIC  | 版本     | 區段標頭    | 程式碼區段 | 資料區段    |
+| 0xEF00     | 0x01     | ...         | ...        | ...         |
++------------+----------+-------------+------------+-------------+
+
+記憶體內容（執行時）：
++------------+------------+------------+----------------+
+| Offset 0   | ...        | aux_offset | ...            |
+| 運算資料   | ...        | calldata   | ...            |
++------------+------------+------------+----------------+
+                            ↓
+                        初始化使用
+                            ↓
+最終部署程式碼：
++------------+----------+-------------+------------+------------------+
+| EOF_MAGIC  | 版本     | 區段標頭    | 程式碼區段 | 資料區段 (含初始值) |
++------------+----------+-------------+------------+------------------+
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/hydai/solidity.tw/edit/master/head-first-eof/20-EIP-7698.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2025/5/21 下午3:16:22</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/head-first-eof/19-EIP-7620.html" class="prev">
+        EIP-7620：EOF 合約部署新方式
+      </a></span> <span class="next"><a href="/head-first-eof/21-EIP-5450.html">
+        EIP-5450: EOF - 堆疊驗證
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.8b20afe5.js" defer></script><script src="/assets/js/2.ce7b5ffa.js" defer></script><script src="/assets/js/1.843ff0e7.js" defer></script><script src="/assets/js/65.598dac1a.js" defer></script>
+  </body>
+</html>
