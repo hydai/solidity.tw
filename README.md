@@ -11,7 +11,7 @@
 5. 深入淺出 EVM Object Format：為一系列以 EVM Object Format 為主題的教學課程，包含影片與文章，為「淺入淺出 EOF」的重製版本。將以完全初學者的角度入手，從各種背景知識開始介紹，由淺入深的讓讀者對 EOF 能有更完整的印象。
     * [影片播放清單(現正熱映中)](https://www.youtube.com/playlist?list=PLHmOMPRfmOxQo8mIUkW2DNj9l4Y3MW9KW)。
     * [影片講義](/head-first-eof-lecture-notes)：為影片的講義。
-    * [文章(正在施工中)]()：為以文章方式的脈絡來講述 EOFv1 的細節，正在施工中，預計 2025 Q1 結尾完成。
+    * [文章](/head-first-eof)：為以文章方式的脈絡來講述 EOFv1 的細節，正在施工中，預計 2025 Q1 結尾完成。由於 EOF 被暫時移出硬分叉的計畫，因此本系列的文章只有完成部分章節，等待後續情況明朗後才會繼續進行更新。
 6. 那些觀眾想知道的事：為觀眾透過 GitHub Issue 向海帶我提問的主題或者問題，將會以文章的方式來呈現（目前還在寫作中，等 5 完成以後才會繼續進行）
 
 如果你有想看的主題，或者認為哪些主題應該被涵蓋在本書中，請[使用 GitHub Issue](https://github.com/hydai/solidity.tw/issues/new/choose) 來進行發問。
